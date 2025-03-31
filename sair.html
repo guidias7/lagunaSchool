@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+      overflow: hidden; /* Para evitar rolar a tela */
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background-color: #fff;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .modal.active {
+      display: block;
+    }
+
+    .modal h1 {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .modal button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .modal .logout {
+      background-color: #ff4d4d;
+      color: #fff;
+    }
+
+    .modal .logout:hover {
+      background-color: #e60000;
+    }
+
+    .modal .cancel {
+      background-color: #f0f2f5;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+
+    .modal .cancel:hover {
+      background-color: #ddd;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+  <div class="modal" id="logoutModal">
+    <h1>Você está prestes a sair</h1>
+    <button class="logout" onclick= "window.location.href='./index.html'">Sair</button>
+    <button class="cancel" onclick="closeModal()">Cancelar</button>
+  </div>
+
+
+  <script>
+    function showModal() {
+      document.getElementById('overlay').classList.add('active');
+      document.getElementById('logoutModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('overlay').classList.remove('active');
+      document.getElementById('logoutModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

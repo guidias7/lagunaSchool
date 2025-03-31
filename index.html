@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  
+<div class="barra-de-topo">
+
+
+  <img src="imagens/logo.png" alt="logo" class="logo">
+  
+</div>
+  <div class="wrapper">
+    <form action="" id = "LoginForm">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="text" placeholder="Usuário" required id = "Email">
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" placeholder="Senha" required id = "Senha">
+        
+      </div>
+      <div class="remember-forgot">
+        <a href="/back-bd/Gerenciamento - Correto/alterar recuperado/index.html">Esqueceu sua senha?</a>
+      </div>
+
+
+      <div class="container"> 
+
+      <button type="submit" class="btn">Login</button>
+
+     </div>
+   
+    </form>
+  </div>
+
+  <script src="efeito.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("LoginForm").onsubmit = async function(e) {
+        e.preventDefault();
+        const email = document.getElementById("Email").value;
+        const senha = document.getElementById("Senha").value;
+
+        if (!email || !senha) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+        const res = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email, senha: senha })
+        });
+
+        const data = await res.json();
+
+        if (data.resultado === 'Login bem-sucedido') {
+            if (data.tipo === 'aluno') {
+                console.log('Dados do aluno:', data.aluno);
+                localStorage.setItem('cpf_aluno', data.aluno.id);
+                console.log('CPF do aluno armazenado no localStorage:', data.aluno.id);
+                window.location.href = "./carregamento.html";
+            } else if (data.tipo === 'professor') {
+                const disciplina = data.professor?.materia; 
+                const cpf = data.professor?.cpf;
+                if (disciplina) {
+                    localStorage.setItem('disciplina', disciplina); 
+                    console.log('Disciplina salva no LocalStorage:', disciplina);
+                    localStorage.setItem('cpf_professor', cpf); 
+                    console.log('CPF do professor armazenado no LocalStorage:', cpf);
+                }
+                window.location.href = "./carregamento-professor.html";
+            } else {
+                alert("Tipo de usuário desconhecido.");
+            }
+        } else {
+            alert("Login falhou. Verifique suas credenciais.");
+        }
+    };
+});
+
+
+    </script>
+
+
+<script src="script.js"></script>
+</body>
+</html>

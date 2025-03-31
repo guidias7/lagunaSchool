@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="carregamento-professor.css">
+    <title>Carregando...</title>
+</head>
+<body>
+    <span class="carregando"></span>
+
+    <script>
+        
+        function redirecionarPorDisciplina() {
+            const disciplina = localStorage.getItem('disciplina');
+            console.log('Disciplina capturada do LocalStorage:', disciplina); 
+            if (!disciplina) {
+                console.log('Nenhuma disciplina encontrada. Redirecionando para a página de login.');
+               
+                window.location.href = "/back-bd/index.html";
+            } else {
+                
+                if (disciplina === 'Matemática') {
+                    window.location.href = "/back-bd/professor/index-prof-mat.html";
+                    console.log('Redirecionando para Matemática.');
+                } 
+                if (disciplina === 'Português') {
+                    window.location.href = "/back-bd/professor/index-prof-port.html";
+                    console.log('Redirecionando para Português.');
+                } 
+                if (disciplina === 'Inglês') {
+                    window.location.href = "/back-bd/professor/index-prof-ing.html";
+                    console.log('Redirecionando para Inglês.');
+                }
+                if (disciplina === 'Geografia') {
+                    window.location.href = "/back-bd/professor/index-prof-geo.html";
+                    console.log('Redirecionando para Geografia.');
+                }
+                if (disciplina === 'Filosofia') {
+                    window.location.href = "/back-bd/professor/index-prof-filo.html";
+                    console.log('Redirecionando para Filosofia.');
+                }
+                if (disciplina === 'Educação Física') {
+                    window.location.href = "/back-bd/professor/index-prof-ed.html";
+                    console.log('Redirecionando para Educação Física.');
+                }
+                if (disciplina === 'Artes') {
+                    window.location.href = "/back-bd/professor/index-prof-artes.html";
+                    console.log('Redirecionando para Artes.');
+                }
+            }
+        }
+
+        
+        setTimeout(redirecionarPorDisciplina, 2000);
+    </script>
+</body>
+</html>

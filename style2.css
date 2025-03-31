@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Botão expansível */
+#btn-exp {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Menu lateral */
+nav.menu-lateral {
+    width: 80px;
+    height: 100%;
+    background-color: Crimson;
+    padding: 40px 0 40px 1%;
+    box-shadow: 3px 0 0 darkred;
+    position: fixed;
+    top: 130px;
+    left: 0;
+    overflow: hidden;
+    transition: .5s;
+}
+
+nav.menu-lateral.expandir {
+    width: 300px;
+}
+
+.btn-expandir {
+    width: 100%;
+    padding-left: 20px;
+    padding-top: 40px;
+}
+
+.btn-expandir > i {
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+/* Estilos de lista no menu lateral */
+ul {
+    height: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li.item-menu {
+    transition: .2s;
+}
+
+ul li.ativo {
+    background-color: darkred;
+}
+
+ul li.item-menu:hover {
+    background: darkred;
+}
+
+ul li.item-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 20px 4%;
+    display: flex;
+    margin-bottom: 10px;
+    line-height: 30px;
+}
+
+ul li.item-menu a .txt-link {
+    margin-left: 70px;
+    transition: .5s;
+    opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link {
+    margin-left: 40px;
+    opacity: 1;
+}
+
+ul li.item-menu a .icon > i {
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+/* Header layout */
+.header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas:
+        'header header header'
+        'sidenav content anuncios'
+        'footer footer footer';
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, Crimson, darkred);
+    padding: 1px;
+    height: 132px;
+}
+
+.logo img {
+    max-width: 300px;
+    height: auto;
+}
+
+.header nav ul {
+    display: flex;
+}
